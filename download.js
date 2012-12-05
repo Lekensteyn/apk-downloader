@@ -13,8 +13,7 @@ function requestAsset(asset_query_base64) {
             } else {
                 var respArr = new Uint8Array(this.response);
                 var data = "";
-                for (var debug_unused = [], i = 0; i < respArr.byteLength; i++) {
-                    debug_unused.push(respArr[i]);
+                for (var i = 0; i < respArr.byteLength; i++) {
                     var c = respArr[i];
                     data += c < 32 || c > 122 ? "~" : String.fromCharCode(c);
                 }
@@ -36,5 +35,5 @@ function requestAsset(asset_query_base64) {
     };
     xmlhttp.send("version=2&request=" + asset_query_base64)
 }
-var request64 = window.location.hash.substr(1, window.location.hash.length - 1);
+var request64 = window.location.hash.substr(1);
 requestAsset(request64);

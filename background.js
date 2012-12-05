@@ -1,9 +1,9 @@
 /**
  * Copyright: redphoenix89 <http://codekiem.com/>, Stephan Schmitz <eyecatchup@gmail.com>
  */
-// regex to match urls against pattern
 
-// main functions to generate requests
+/* used for serializing Javascript types in a special binary format used by
+ * MarketSession. */
 var Utils = {
     stringToByteArray: function(str) {
         var b = [];
@@ -44,7 +44,11 @@ var Utils = {
     }
 };
 
+/* Starts an APK download attempt */
 var MarketSession = {
+    /**
+     * Called when pressing the APK Downloader icon in the location bar.
+     */
     download: function(packageName, tabId) {
         if (!localStorage.getItem("simCountry") || !localStorage.getItem("simOperator") || !localStorage.getItem("simOperatorCode")) {
             alert("Please set Sim Operator in the Options page first");
@@ -68,6 +72,9 @@ var MarketSession = {
             this.executeRawHttpsQuery(this.generateAssetRequest(options), packageName, tabId)
         }
     },
+    /**
+     * @returns base64 encoded binary data that can be passed to Google Play API.
+     */
     generateAssetRequest: function(options, tabUrl) {
         /* some constants to avoid magic numbers */
         var FIELD_AUTHTOKEN = 0;
@@ -176,7 +183,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, change) {
 /**
  * Called when the URL of a tab is changed.
  */
-function checkForValidUrl(message, sender, sendResponse) {
+chrome.tabs.onUpdated.addListener(function (message, sender, sendResponse) {
     /* when a page is fully loaded and the page is really about an app */
     if ("complete" == sender.status &&
         /play\.google\.com\/store\/apps\/details\?id=[\w\d\.\_]+/.test(sendResponse.url)) {
@@ -189,8 +196,7 @@ function checkForValidUrl(message, sender, sendResponse) {
             }
         });
     }
-}
-chrome.tabs.onUpdated.addListener(checkForValidUrl);
+});
 
 /**
  * Always add session cookies and change User Agent when trying to download
