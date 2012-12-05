@@ -143,7 +143,7 @@ var MarketSession = {
                     simOperatorLength = out.length + 1;
                     break;
                 case FIELD_PACKAGENAME_LENGTH:
-                    out = out.concat(Utils.serializeInt32(options.packageName.length + FIELD_ISSECURE));
+                    out = out.concat(Utils.serializeInt32(options.packageName.length + 2));
                     break;
                 case FIELD_PACKAGENAME:
                     out = Utils.serializeData(out, options.packageName, "string");
@@ -153,7 +153,10 @@ var MarketSession = {
         out = [10].concat(Utils.serializeInt32(simOperatorLength)).concat([10]).concat(out);
         /* Old code behaved like this: encode as base64, but use - instead of +
          * and / instead of _ */
-        return btoa(out).replace(/\+/g, "-").replace(/\//g, "_");
+        var binary = out.map(function (c) {
+            return String.fromCharCode(c);
+        }).join("");
+        return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_");
     },
     executeRawHttpsQuery: function(asset_query_base64, packageName, tabId) {
         var psUrl = "https://play.google.com/store/apps/details?id=" + packageName;
