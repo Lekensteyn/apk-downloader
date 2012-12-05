@@ -1,5 +1,10 @@
-chrome.extension.onRequest.addListener(function(b, c, a) {
-    "getHtml" == b.action ? a({
-        html: document.documentElement.outerHTML
-    }) : a({})
+/* called by background.js */
+chrome.extension.onRequest.addListener(function(message, sender, sendResponse) {
+    if (message.action == "getHtml") {
+        sendResponse({
+            html: document.documentElement.outerHTML
+        });
+    } else {
+        sendResponse({});
+    }
 });
