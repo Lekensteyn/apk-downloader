@@ -3,7 +3,7 @@
  */
 function requestAsset(asset_query_base64) {
     var xmlhttp = new XMLHttpRequest;
-    xmlhttp.open("POST", "https://android.clients.google.com/market/api/ApiRequest", false);
+    xmlhttp.open("POST", "https://android.clients.google.com/market/api/ApiRequest", true);
     xmlhttp.responseType = "arraybuffer";
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = function() {

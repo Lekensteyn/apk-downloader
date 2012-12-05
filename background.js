@@ -140,7 +140,7 @@ var MarketSession = {
                     break;
                 case FIELD_SIMOPERATORNUMERIC:
                     out = Utils.serializeData(out, options.simOperatorNumeric, "string");
-                    simOperatorLength = out.length + n1;
+                    simOperatorLength = out.length + 1;
                     break;
                 case FIELD_PACKAGENAME_LENGTH:
                     out = out.concat(Utils.serializeInt32(options.packageName.length + FIELD_ISSECURE));
@@ -158,7 +158,7 @@ var MarketSession = {
     executeRawHttpsQuery: function(asset_query_base64, packageName, tabId) {
         var psUrl = "https://play.google.com/store/apps/details?id=" + packageName;
         /* processed in download.js */
-        psurl += "&download=apk#" + asset_query_base64;
+        psUrl += "&download=apk#" + asset_query_base64;
         chrome.tabs.update(tabId, {
             url: psUrl
         });
