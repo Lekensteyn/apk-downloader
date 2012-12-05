@@ -16,7 +16,10 @@
       "js": ["download.js"]
     },
     {
-      "matches": ["*://play.google.com/store/apps/details?id=*"],
+      "matches": [
+        "*://play.google.com/store/apps/details?id=*",
+        "*://play.google.com/store/apps/details?*&id=*"
+      ],
       "js": ["market.js"]
     }
   ],

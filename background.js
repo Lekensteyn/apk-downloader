@@ -164,37 +164,13 @@ var MarketSession = {
         });
     }
 };
-// tab onUpdated listeners
-chrome.tabs.onUpdated.addListener(function(tabId, change) {
-    if (change.status == "complete") {
-        chrome.tabs.query({
-            active: true
-        }, function (tabs) {
-            // FIXME: parseUri is not defined
-            if (parseUri(tabs[0].url) !== false) {
-                chrome.pageAction.show(tabs[0].id);
-            } else {
-                chrome.pageAction.hide(tabs[0].id);
-            }
-        });
-    }
-});
 
 /**
- * Called when the URL of a tab is changed.
+ * When a tab is loaded, show the APK Downloader icon if requested by market.js.
  */
-chrome.tabs.onUpdated.addListener(function (message, sender, sendResponse) {
-    /* when a page is fully loaded and the page is really about an app */
-    if ("complete" == sender.status &&
-        /play\.google\.com\/store\/apps\/details\?id=[\w\d\.\_]+/.test(sendResponse.url)) {
-        /* HTML response by market.js */
-        chrome.tabs.sendRequest(message, {
-            action: "getHtml"
-        }, function(data) {
-            if (data && data.html && data.html.indexOf('data-isfree="true"') != -1) {
-                chrome.pageAction.show(message);
-            }
-        });
+chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message && message.action == "showIcon") {
+        chrome.pageAction.show(sender.tab.id);
     }
 });
 

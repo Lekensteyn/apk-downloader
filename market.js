@@ -1,10 +1,9 @@
-/* called by background.js */
-chrome.extension.onRequest.addListener(function(message, sender, sendResponse) {
-    if (message.action == "getHtml") {
-        sendResponse({
-            html: document.documentElement.outerHTML
-        });
-    } else {
-        sendResponse({});
-    }
-});
+/**
+ * Notify background.js that the APK downloader icon should be shown. The icon
+ * should be shown when a free application download is available.
+ */
+if (document.querySelector("[data-isfree=true]") != null) {
+    chrome.extension.sendMessage({
+        action: "showIcon"
+    });
+}
