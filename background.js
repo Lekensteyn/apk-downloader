@@ -3,39 +3,6 @@
  */
 // regex to match urls against pattern
 
-// base64 helper functions
-var base64 = function() {};
-base64.classID = function() {
-    return "system.utility.base64"
-};
-base64.isFinal = function() {
-    return !0
-};
-base64.encString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-base64.encStringS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
-base64.encode = function(e, g, j) {
-    if (1 > arguments.length) return null;
-    var l = [];
-    if (3 <= arguments.length && !0 != j && !1 != j) return null;
-    var h = 3 <= arguments.length && j ? this.encStringS : this.encString,
-    k = "string" == typeof e;
-    if (!k && "object" != typeof e && !(e instanceof Array)) return null;
-    2 > arguments.length && (g = !0);
-    if (!0 != g && !1 != g) return null;
-    for (var m = !k || !g ? 1 : 2, a = "", b = 0, f = 1, c = 0, i = b = 0; i < e.length; i++) {
-        for (var b = k ? e.charCodeAt(i) : e[i], d = m - 1; 0 <= d; d--) l[d] = b & 255, b >>= 8;
-        for (d = 0; d < m; d++) c = c << 8 & 65280 | l[d], b = 63 << 2 * f & c, c -= b, a += h.charAt(b >> 2 * f), f++, 4 == f && (a += h.charAt(c & 63), f = 1)
-    }
-    switch (f) {
-        case 2:
-            a += h.charAt(63 & 16 * c);
-            a += "==";
-            break;
-        case 3:
-            a += h.charAt(63 & 4 * c), a += "="
-    }
-    return a
-};
 // main functions to generate requests
 var Utils = {
     stringToByteArray: function(str) {
@@ -177,7 +144,9 @@ var MarketSession = {
             }
         }
         out = [10].concat(Utils.serializeInt32(simOperatorLength)).concat([10]).concat(out);
-        return base64.encode(out, false, true)
+        /* Old code behaved like this: encode as base64, but use - instead of +
+         * and / instead of _ */
+        return btoa(out).replace(/\+/g, "-").replace(/\//g, "_");
     },
     executeRawHttpsQuery: function(asset_query_base64, packageName, tabId) {
         var psUrl = "https://play.google.com/store/apps/details?id=" + packageName;
@@ -203,7 +172,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, change) {
         });
     }
 });
-
 
 /**
  * Called when the URL of a tab is changed.
