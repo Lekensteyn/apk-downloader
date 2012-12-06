@@ -1,20 +1,16 @@
 {
   "manifest_version": 2,
-  "name": "APK Downloader (BexMod)",
-  "version": "1.3.4",
-  "description": "Download APK from Google Play Store (Android Market). Updated version by Bexton. Based on work by redphoenix89: http://codekiem.com/2012/02/24/apk-downloader/.",
+  "name": "APK Downloader",
+  "version": "1.3.5",
+  "description": "Download APK from Google Play Store (Android Market).",
   "icons": {"16": "icon_16.png", "48": "icon_48.png", "128": "icon_128.png"},
   "page_action": {
     "default_icon": "page_action.png",
     "default_title": "APK Downloader"
   },
   "options_page": "options.html",
-  "background": { "scripts": ["background.js"] },
+  "background": { "scripts": ["jsxcompressor.min.js", "protocol.js", "background.js" ] },
   "content_scripts": [
-    {
-      "matches": ["*://play.google.com/store/apps/details?id=*&download=apk*"],
-      "js": ["download.js"]
-    },
     {
       "matches": [
         "*://play.google.com/store/apps/details?id=*",
@@ -24,11 +20,9 @@
     }
   ],
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "tabs",
+    "cookies",
     "https://www.google.com/accounts/ClientLogin",
-	"*://android.clients.google.com/*",
-	"*://*.android.clients.google.com/*"
+    "*://android.clients.google.com/*",
+    "*://*.android.clients.google.com/*"
   ]
 }
