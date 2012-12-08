@@ -1,30 +1,31 @@
+<!doctype html>
 <html>
 <head>
-	<title>APK Downloader Options</title>
-	<link rel="stylesheet" href="options.css" type="text/css" media="all" />
+    <title>APK Downloader Options</title>
+    <link rel="stylesheet" href="options.css" type="text/css" media="all" />
 </head>
 
 <body class="options">
-	<div id="options">
-		<h1>Options</h1>
-		<form action="#" method="post">
-			<div id="info_form">
-				<p>
-					<label for="user_login">Email ( being used on Android Market )<br />
+    <div id="options">
+        <h1>Options</h1>
+        <form action="#" method="post">
+            <div id="info_form">
+                <p>
+                    <label for="user_login">Email (used on Android Market)<br />
                         <span id="auth_email"></span>
-					</label>
-				</p>
-				<p>
-					<label for="user_login">Android Device ID<br />
+                    </label>
+                </p>
+                <p>
+                    <label for="user_login">Android Device ID<br />
                         <span id="device_id"></span>
-					</label>
-				</p>
-				<p class="submit">
+                    </label>
+                </p>
+                <p class="submit">
                     <input type="button" id="btn_logout" class="button-primary" value="Logout" tabindex="100" />
-				</p>
+                </p>
                 
                 <p>
-                    <label for="slt_country">Sim Operator<br />
+                    <label for="slt_country">Sim Operator</label>
                     <select id="slt_country"></select>
                     <select id="slt_operator"></select>
                 </p>
@@ -32,27 +33,27 @@
                 <p class="submit">
                     <input type="button" id="btn_default" class="button-primary" value="Default" tabindex="100" />
                     <input type="button" id="btn_save" class="button-primary" value="Save Settings" tabindex="100" />
-				</p>
-			</div>
-			<div id="login_form">
-				<p>
-					<label for="user_login">Email ( being used on Android Market )<br />
-					<input type="text" id="user_email" class="input" value="" size="20" tabindex="10" /></label>
-				</p>
-				<p>
-					<label for="user_pass">Password<br />
-					<input type="password" id="user_password" class="input" value="" size="20" tabindex="20" /></label>
-				</p>
-				<p>
-					<label for="user_pass">Android Device ID ( 16 characters )<br />
-					<input type="text" value="" maxlength="16" id="user_device_id" class="input" value="" size="20" tabindex="30" /></label>
-				</p>
-				<p class="submit">
-				<input type="submit" id="btn_login" class="button-primary" value="Login" tabindex="100" />
-				</p>
-			</div>
-		</form>
-	</div>
-	<script type="text/javascript" src="options.js"></script>
+                </p>
+            </div>
+            <div id="login_form">
+                <p>
+                    <label for="user_email">Email (used on Android Market)</label><br />
+                    <input type="email" id="user_email" class="input" value="" size="20" tabindex="10" placeholder="your.email@gmail.com" />
+                </p>
+                <p>
+                    <label for="user_password">Password</label><br />
+                    <input type="password" id="user_password" class="input" value="" size="20" tabindex="20" />
+                </p>
+                <p>
+                    <label for="user_device_id">Android Device ID (16 hex characters)</label>
+                    <input type="text" value="" maxlength="16" id="user_device_id" class="input" value="" size="20" tabindex="30" pattern="[0-9a-fA-F]{16}" placeholder="0123456789ABCDEF" />
+                </p>
+                <p class="submit">
+                <input type="submit" id="btn_login" class="button-primary" value="Login" tabindex="100" />
+                </p>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="options.js"></script>
 </body>
 </html>

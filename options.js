@@ -854,11 +854,9 @@ var showWarning = function() {
 var testSSL = function() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://android.clients.google.com/market/api/ApiRequest", true);
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            if (this.status == 0) {
-                showWarning();
-            }
+    xhr.onload = function() {
+        if (this.status == 0) {
+            showWarning();
         }
     };
     xhr.send();
@@ -877,6 +875,22 @@ var clearAuth = function() {
     localStorage.removeItem("authToken");
     localStorage.removeItem("deviceId");
 }
+
+/**
+ * ClientLogin errors, taken from
+ * https://developers.google.com/accounts/docs/AuthForInstalledApps
+ */
+var clientLoginErrors = {
+    "BadAuthentication": "Incorrect username or password. Note that two factor auth is not supported.",
+    "NotVerified": "The account email address has not been verified. You need to access your Google account directly to resolve the issue before logging in here.",
+    "TermsNotAgreed": "You have not yet agreed to Google's terms, acccess your Google account directly to resolve the issue before logging in using here.",
+    "CaptchaRequired": "A CAPTCHA is required. (not supported, try logging in another tab)",
+    "Unknown": "Unknown or unspecified error; the request contained invalid input or was malformed.",
+    "AccountDeleted": "The user account has been deleted.",
+    "AccountDisabled": "The user account has been disabled.",
+    "ServiceDisabled": "Your access to the specified service has been disabled. (The user account may still be valid.)",
+    "ServiceUnavailable": "The service is not available; try again later."
+};
 
 var login = function(email, password, deviceId) {
     var ACCOUNT_TYPE_HOSTED_OR_GOOGLE = "HOSTED_OR_GOOGLE";
@@ -898,31 +912,31 @@ var login = function(email, password, deviceId) {
         paramsStr += "&" + key + "=" + encodeURIComponent(params[key])
     }
 
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            var AUTH_TOKEN = "";
-            var response = this.responseText;
+    xhr.onload = function() {
+        var AUTH_TOKEN = "";
+        var response = this.responseText;
 
-            if (response.indexOf("Error") > -1) {
-                alert('ERROR: Invalid email or password!');
-                return;
-            }
-
-            var regex = /Auth=([a-z0-9=_\-]+)/gi;
-            match = regex.exec(response);
-            if (match && match.length >= 1) {
-                AUTH_TOKEN = match[1];
-            }
-
-            if (!AUTH_TOKEN) {
-                alert('ERROR: Cannot use this email');
-                return;
-            }
-
-            saveAuth(email, AUTH_TOKEN, deviceId);
-            refreshViews();
+        var error = response.match(/Error=(\w+)/);
+        if (error) {
+            var msg = clientLoginErrors[error[1]] || error[1];
+            alert("ERROR: authentication failed.\n" + msg);
+            return;
         }
-    }
+
+        var match = response.match(/Auth=([a-z0-9=_\-]+)/i);
+        if (match) {
+            AUTH_TOKEN = match[1];
+        }
+
+        if (!AUTH_TOKEN) {
+            // should never happen...
+            alert("ERROR: Authentication token not available, cannot login.");
+            return;
+        }
+
+        saveAuth(email, AUTH_TOKEN, deviceId);
+        refreshViews();
+    };
 
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(paramsStr);
@@ -989,28 +1003,22 @@ btnLogin.onclick = function(e) {
     var password = inpPassword.value;
     var deviceId = inpDeviceId.value;
 
-    if (email.length == 0) {
-        alert('ERROR: Please enter Email!');
-        inpEmail.focus();
-        return;
-    } else if (password.length == 0) {
-        alert('ERROR: Please enter Password!');
-        inpPassword.focus();
-        return;
-    } else if (deviceId.length == 0) {
-        alert('ERROR: Please enter your Android Device ID!');
-        inpDeviceId.focus();
-        return;
-    }
-
     var match = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(email);
     if (!match) {
         alert('ERROR: Please enter valid email!');
+        inpEmail.focus();
         return;
     }
 
-    if (deviceId.length != 16 || !/^[0-9a-f]+$/i.exec(deviceId)) {
+    if (password.length == 0) {
+        alert('ERROR: Please enter Password!');
+        inpPassword.focus();
+        return;
+    }
+
+    if (!/^[0-9a-f]{16}$/i.exec(deviceId)) {
         alert('ERROR: Android Device ID must be 16 characters long and only contains characters from 0-9, A-F');
+        inpDeviceId.focus();
         return;
     }
 
@@ -1021,7 +1029,7 @@ var btnLogout = document.getElementById("btn_logout");
 btnLogout.onclick = function(e) {
     e.preventDefault();
 
-    if (confirm('Change another email?')) {
+    if (confirm('Change to another email?')) {
         clearAuth();
         refreshViews();
     }

@@ -110,6 +110,7 @@ a
 		from(#ff3333),
 		to(#b80000));
 	border: 1px solid #d11313;
+	cursor: pointer;
 }
 
 #options form .button-primary:active
@@ -130,4 +131,10 @@ a
 {
     width:45%;
     
+}
+#user_device_id {
+	text-transform: uppercase;
+}
+#login_form input.input:invalid {
+	box-shadow: 0 0 1.5px 1px red;
 }
