@@ -7,3 +7,14 @@ if (document.querySelector("[data-isfree=true]") != null) {
         action: "showIcon"
     });
 }
+
+chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message && message.action == "download") {
+        console.log("Requested download of " + message.filename + " from " +
+            message.url);
+        var a = document.createElement("a");
+        a.href = message.url;
+        a.download = message.filename;
+        a.click();
+    }
+});

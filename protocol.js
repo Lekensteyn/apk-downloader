@@ -77,7 +77,7 @@ var MarketSession = {
             options.simOperatorNumeric = localStorage.simOperatorCode;
             options.packageName = packageName;
             var asset_query_base64 = this.generateAssetRequest(options);
-            processAsset(asset_query_base64, packageName);
+            processAsset(asset_query_base64, packageName, tabId);
         }
     },
     /**

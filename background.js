@@ -76,7 +76,7 @@ function strToHex(str) {
 /**
  * Try to retrieve download URL for a given base64-encoded query.
  */
-function processAsset(asset_query_base64, packageName) {
+function processAsset(asset_query_base64, packageName, tabId) {
     var payload = "version=2&request=" + asset_query_base64;
     var xhr = new XMLHttpRequest();
     xhr.responseType = "arraybuffer";
@@ -93,6 +93,9 @@ function processAsset(asset_query_base64, packageName) {
             /* gzipped content, try to unpack */
             var data = decodeURIComponent((new JXG.Util.Unzip(chars)).unzip()[0][0]);
 
+            console.log("Response: " + data);
+            console.log("Response (hex): " + strToHex(data));
+
             var url, marketda;
             if ((url = /https?:\/\/[^:]+/i.exec(data))) {
                 url = url[0];
@@ -100,12 +103,10 @@ function processAsset(asset_query_base64, packageName) {
                 if ((marketda = /MarketDA..(\d+)/.exec(data))) {
                     marketda = marketda[1];
                     var filename = packageName + ".apk";
-                    downloadAPK(marketda, url, filename);
+                    downloadAPK(marketda, url, filename, tabId);
                     return;
                 }
             }
-            console.log("Response: " + data);
-            console.log("Response (hex): " + strToHex(data));
             alert("ERROR: Cannot download this app!");
         });
     };
@@ -118,11 +119,17 @@ function processAsset(asset_query_base64, packageName) {
 /**
  * Tries to download an APK file given its URL and cookie.
  */
-function downloadAPK(marketda, url, filename) {
+function downloadAPK(marketda, url, filename, tabId) {
     if (!filename) filename = "todo-pick-a-name.apk";
 
     setMDACookie(marketda, function() {
         console.log("Trying to download " + url + " and save it as " + filename);
+        chrome.tabs.sendMessage(tabId, {
+            action: "download",
+            url: url,
+            filename: filename
+        });
+    return;
         var a = document.createElement("a");
         a.href = url;
         a.download = filename;
