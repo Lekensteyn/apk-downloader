@@ -142,11 +142,6 @@ function downloadAPK(marketda, url, filename, storeId, tabId) {
             url: url,
             filename: filename
         });
-    return;
-        var a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        a.click();
     });
 }
 
@@ -160,7 +155,7 @@ chrome.extension.onMessage.addListener(function (message, sender, sendResponse) 
 });
 
 chrome.pageAction.onClicked.addListener(function (tab) {
-    var match = /play\.google\.com\/store\/apps\/details\?id=([\w\d\.\_]+)/i.exec(tab.url);
+    var match = /play\.google\.com\/store\/apps\/details\?(?:|.*&)id=([\w\d\.\_]+)/i.exec(tab.url);
     if (match) {
         MarketSession.download(match[1], tab.id);
     }
