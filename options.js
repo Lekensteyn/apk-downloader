@@ -47,23 +47,6 @@ var initOperatorOptions = function(country) {
     }
 };
 
-var showWarning = function() {
-    document.getElementById("warning").style.display = "block";
-};
-
-var testSSL = function() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://android.clients.google.com/market/api/ApiRequest", true);
-    xhr.onload = function() {
-        if (this.status == 0) {
-            showWarning();
-        }
-    };
-    xhr.send();
-};
-
-testSSL();
-
 var saveAuth = function(email, token, deviceId) {
     localStorage.setItem('authEmail', email);
     localStorage.setItem('authToken',  token);
@@ -81,7 +64,7 @@ var clearAuth = function() {
  * https://developers.google.com/accounts/docs/AuthForInstalledApps
  */
 var clientLoginErrors = {
-    "BadAuthentication": "Incorrect username or password. Note that two factor auth is not supported.",
+    "BadAuthentication": "Incorrect username or password.",
     "NotVerified": "The account email address has not been verified. You need to access your Google account directly to resolve the issue before logging in here.",
     "TermsNotAgreed": "You have not yet agreed to Google's terms, acccess your Google account directly to resolve the issue before logging in using here.",
     "CaptchaRequired": "A CAPTCHA is required. (not supported, try logging in another tab)",
@@ -173,6 +156,16 @@ var inpDeviceId = document.getElementById("user_device_id");
 var sltCountry = document.getElementById("slt_country");
 var sltOperator = document.getElementById("slt_operator");
 var btnDefault = document.getElementById("btn_default");
+
+var btnsAdv = document.getElementsByClassName("btn-advanced-settings");
+for (var i=0; i<btnsAdv.length; i++) {
+    btnsAdv[i].addEventListener("click", function (e) {
+        e.preventDefault();
+        formInfo.classList.toggle("hide-advanced");
+        formInfo.classList.toggle("show-advanced");
+    });
+}
+
 btnDefault.onclick = function(e) {
     e.preventDefault();
     if (confirm('Reset to default sim operator?')) {

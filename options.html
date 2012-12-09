@@ -9,45 +9,55 @@
     <div id="options">
         <h1>Options</h1>
         <form>
-            <div id="info_form">
+            <div id="info_form" class="hide-advanced">
+                <label for="user_login">Email (used on Android Market)<br>
+                    <span id="auth_email"></span>
+                </label>
                 <p>
-                    <label for="user_login">Email (used on Android Market)<br>
-                        <span id="auth_email"></span>
-                    </label>
-                </p>
-                <p>
-                    <label for="user_login">Android Device ID<br>
-                        <span id="device_id"></span>
-                    </label>
-                </p>
+                <label for="user_login">Android Device ID<br>
+                    <span id="device_id"></span>
+                </label>
                 <p class="submit">
                     <input type="button" id="btn_logout" class="button-primary" value="Logout" tabindex="100">
                 </p>
                 
-                <p>
-                    <label for="slt_country">Sim Operator</label>
+                <div id="advanced-settings">
+                    <label for="slt_country">Sim Operator</label><br>
                     <select id="slt_country"></select>
-                    <select id="slt_operator"></select>
-                </p>
+                    <select id="slt_operator"></select><br>
                 
-                <p class="submit">
-                    <input type="button" id="btn_default" class="button-primary" value="Default" tabindex="100">
-                    <input type="button" id="btn_save" class="button-primary" value="Save Settings" tabindex="100">
-                </p>
+                    <input type="button" id="btn_default" class="button-primary" value="Use default" title="Use default SIM operator" tabindex="100">
+                    <input type="button" id="btn_save" class="button-primary" value="Save SIM operator" tabindex="100">
+                </div>
+                <!-- shown/hidden depends on hide-advanced/show-advanced class in parent -->
+                <button class="btn-advanced-settings expander">Show advanced settings...</button>
+                <button class="btn-advanced-settings collapser">Hide advanced settings...</button>
             </div>
             <div id="login_form">
-                <p>
-                    <label for="user_email">Email (used on Android Market)</label><br>
-                    <input type="email" id="user_email" class="input" value="" size="20" tabindex="10" placeholder="your.email@gmail.com">
-                </p>
-                <p>
-                    <label for="user_password">Password</label><br>
-                    <input type="password" id="user_password" class="input" value="" size="20" tabindex="20">
-                </p>
-                <p>
-                    <label for="user_device_id">Android Device ID (16 hex characters)</label>
-                    <input type="text" value="" maxlength="16" id="user_device_id" class="input" value="" size="20" tabindex="30" pattern="[0-9a-fA-F]{16}" placeholder="0123456789ABCDEF">
-                </p>
+                <label for="user_email">Email (used on Android Market)</label><br>
+                <input type="email" id="user_email" class="input" value="" size="20" tabindex="10" placeholder="your.email@gmail.com">
+                <div class="help-msg">
+                    <p>Enter your Android Market email account here, it must be activated before you can use it.</p>
+                </div>
+
+                <label for="user_password">Password</label><br>
+                <input type="password" id="user_password" class="input" value="" size="20" tabindex="20">
+                <div class="help-msg">
+                    <p>This password is used once to retrieve an authentication
+                    token and is not stored. Note: two factor authentication is
+                    not supported, it is recommended to use <em>Application
+                    specific passwords</em>.</p>
+                </div>
+                <label for="user_device_id">Android Device ID (16 hex characters)</label>
+                <input type="text" value="" maxlength="16" id="user_device_id" class="input" value="" size="20" tabindex="30" pattern="[0-9a-fA-F]{16}" placeholder="0123456789ABCDEF">
+                <div class="help-msg">
+                    <p>Your Device ID can be found by dialing
+                    <strong>*#*#TALK#*#*</strong> which will open the <em>GTalk
+                    Service Monitor</em>. Search for a line starting with
+                    <em>Device ID: android-....</em>. You must enter the ID
+                    without <em>android-</em> prefix here.</p>
+                </div>
+
                 <p class="submit">
                     <input type="submit" id="btn_login" class="button-primary" value="Login" tabindex="100">
                 </p>
