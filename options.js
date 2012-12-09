@@ -21,7 +21,8 @@ var setSimSettings = function(sim) {
 var initCountryOptions = function() {
     var selectedCountry = localStorage.getItem('simCountry');
     Object.keys(codes).sort().forEach(function(country) {
-        var option = new Option(/*text*/ country, /*value*/ country, /*selected*/ country == selectedCountry);
+        var option = new Option(/*text*/ country, /*value*/ country,
+            /*default_selected*/ false, /*selected*/ country == selectedCountry);
         sltCountry.add(option);
     });
 
@@ -39,7 +40,8 @@ var initOperatorOptions = function(country) {
     if (operators) {
         var selectedOperator = localStorage.getItem('simOperator');
         Object.keys(operators).sort().forEach(function(operator) {
-            var option = new Option(/*text*/ operator, /*value*/ operator, /*selected*/ operator == selectedOperator);
+            var option = new Option(/*text*/ operator, /*value*/ operator,
+                /*default_selected*/ false, /*selected*/ operator == selectedOperator);
             sltOperator.add(option);
         });
     }
