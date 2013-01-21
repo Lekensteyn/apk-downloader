@@ -1,0 +1,105 @@
+#!/bin/bash
+# Author: Peter Wu <lekensteyn@gmail.com>
+
+wwwdir="$1"
+key="$2"
+crxdir="$1/crx"
+updates="$wwwdir/updates.xml"
+if [ $# -lt 2 ]; then
+	echo "Usage: $0 extension-www-dir key"
+	exit 1
+fi
+if [ -z "$wwwdir" -o ! -e "$updates" ]; then
+	echo "Cannot find $updates"
+	exit 1
+fi
+if [ -z "$key" ]; then
+	echo "Key is required"
+	exit 1
+fi
+
+if ! [ -e "manifest.json" ]; then
+	echo "manifest.json not found in current directory"
+	exit 1
+fi
+
+version=$(grep -Po 'version": "\K(.+)(?=")' manifest.json)
+if ! [[ $version =~ ^([0-9]+\.)*[0-9]+$ ]]; then
+	echo "Invalid version found: '$version'"
+	exit 1
+fi
+
+calc_id() {
+	local pem="$1" pub
+	pub=$(openssl rsa -pubout -outform DER -in "$pem")
+	if [ -n "$pub" ]; then
+		echo -n "$pub" | sha256sum | head -c32 | tr 0-9a-f a-p
+	fi
+}
+get_appid() {
+	grep -Po "appid='\\K[a-p]{32}(?=')" "$updates"
+}
+
+appid=$(get_appid)
+if grep -q "appid=''" "$updates"; then
+	if [ -s "$key" ]; then
+		echo "App ID is empty, but key already exists! Aborting."
+		exit 1
+	fi
+	echo "Key will be generated"
+	# openssl genrsa -out "$key" 1024
+elif [ ! -s "$key" ]; then
+	echo "App ID exists, please pass the correct key"
+	exit 1
+else
+	if [ -z "$appid" ]; then
+		echo "Cannot find app ID in $updates"
+		exit 1
+	fi
+
+	calc_extid=$(calc_id "$key")
+	if [ -z "$calc_extid" ]; then
+		echo "Cannot calculate extension ID!"
+		exit 1
+	fi
+
+	if [[ $appid != $calc_extid ]]; then
+		echo "App ID does not match calculated ID:"
+		echo "Expected  : $appid"
+		echo "Calculated: $calc_extid"
+		exit 1
+	fi
+fi
+
+tmpdir="$(mktemp -d)"
+if [ -z "$tmpdir" -o ! -d "$tmpdir" ]; then
+	echo "Could not create a tmpdir!"
+	exit 1
+fi
+
+cleanup() {
+	echo "Removing $tmpdir"
+	rm -r "$tmpdir"
+}
+trap cleanup EXIT
+
+mkdir "$tmpdir/ext"
+git archive HEAD -- \*.css \*.js \*.html \*.json \*.png | tar x -C "$tmpdir/ext"
+cmd=(chromium --pack-extension="$tmpdir/ext")
+[ -s "$key" ] && cmd+=(--pack-extension-key="$key")
+"${cmd[@]}"
+
+regexp="codebase='(.+)-[0-9.]+\\.crx' version='.*'"
+repl="codebase='\\1-$version.crx' version='$version'"
+sed -r "s#$regexp#$repl#" -i "$updates"
+if [ -z "$appid" ]; then
+	mv "$tmpdir/ext.pem" "$key"
+	appid=$(calc_id "$key")
+	sed "s#appid=''#appid='$appid'#" -i "$updates"
+fi
+
+file=$(grep -Po "codebase='\\K[^']+-$version.crx" "$updates")
+file="${file##*/}"
+
+[ -d "$crxdir" ] || mkdir "$crxdir"
+mv -v "$tmpdir/ext.crx" "$crxdir/$file"
