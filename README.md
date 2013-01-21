@@ -1,22 +1,33 @@
 APK Downloader Chrome Extension
 ===============================
 This original version of this Chromium extension can be found on
-http://codekiem.com/2012/02/24/apk-downloader/. Improvements has been made by
+http://codekiem.com/2012/02/24/apk-downloader/. Improvements have been made by
 Bexton.
 
 This version is based on apkdownloader-1.3.4.zip as found on
-http://forum.xda-developers.com/showthread.php?t=1809458. See that thread for
-installation instructions. This project was started because the 1.3.4 version
-became broken with Chromium 23 and because I (Lekensteyn) prefer a public git
-repository to work on code instead of some obscure zip package from a random
-forum.
+http://forum.xda-developers.com/showthread.php?t=1809458. This project was
+started because the 1.3.4 version became broken with Chromium 23 and because I
+(Lekensteyn) prefer a public git repository to work on code instead of some
+obscure zip package from a random forum.
 
 Contributions are always welcome.
+
+Installation
+------------
+Prior to version 1.4.1, only a source distribution was available, but since I
+found out that some third parties provide a CRX file with spyware, I decided to
+make a CRX available as well. For installation instructions, see:
+
+  https://lekensteyn.nl/apk-downloader/
 
 Changelog
 ---------
 For changes before and including 1.3.4, see
 http://forum.xda-developers.com/showthread.php?t=1809458.
+
+Version 1.4.1 - 2013-01-13
+- Packaging-only change, add update URL to manifest file and provided
+  ready-to-install CRX file.
 
 Version 1.4 - 2012-12-09
 
