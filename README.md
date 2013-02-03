@@ -25,6 +25,9 @@ Changelog
 For changes before and including 1.3.4, see
 http://forum.xda-developers.com/showthread.php?t=1809458.
 
+Version 1.4.2 - 2013-02-03
+- Fix internal crash when trying to download certain apps.
+
 Version 1.4.1 - 2013-01-13
 - Packaging-only change, add update URL to manifest file and provided
   ready-to-install CRX file.

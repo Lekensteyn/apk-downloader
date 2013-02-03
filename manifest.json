@@ -1,7 +1,7 @@
 {
   "name": "APK Downloader",
   "description": "Download APK from Google Play Store (Android Market).",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "manifest_version": 2,
   "homepage_url": "https://lekensteyn.nl/apk-downloader/",
   "update_url": "https://lekensteyn.nl/apk-downloader/updates.xml",
