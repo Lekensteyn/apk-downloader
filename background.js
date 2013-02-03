@@ -104,14 +104,15 @@ function _real_processAsset(asset_query_base64, packageName, storeId, tabId) {
             }
             var chars = new Uint8Array(xhr.response);
             /* gzipped content, try to unpack */
-            var data = decodeURIComponent((new JXG.Util.Unzip(chars)).unzip()[0][0]);
+            var data = (new JXG.Util.Unzip(chars)).unzip()[0][0];
 
             console.log("Response: " + data);
             console.log("Response (hex): " + strToHex(data));
 
             var url, marketda;
             if ((url = /https?:\/\/[^:]+/i.exec(data))) {
-                url = url[0];
+		/* not sure if decoding is even necessary */
+                url = decodeURIComponent(url[0]);
                 /* format: "MarketDA", 0x72 ('r'), length of data, data */
                 if ((marketda = /MarketDA..(\d+)/.exec(data))) {
                     marketda = marketda[1];
