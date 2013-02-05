@@ -29,11 +29,25 @@ if ! [[ $version =~ ^([0-9]+\.)*[0-9]+$ ]]; then
 	exit 1
 fi
 
+dat_to_id() {
+	sha256sum | head -c32 | tr 0-9a-f a-p
+}
+
+emptysum=$(echo -n | dat_to_id)
+_emptysum=odlameecjipmbmbejkplpemijjgpljce
+if [[ $emptysum != $_emptysum ]]; then
+	echo "Internal sanity check failed: calculated ID does not match"
+	echo "Expected  : $_emptysum"
+	echo "Calculated: $emptysum"
+	exit 1
+fi
+
 calc_id() {
-	local pem="$1" pub
-	pub=$(openssl rsa -pubout -outform DER -in "$pem")
-	if [ -n "$pub" ]; then
-		echo -n "$pub" | sha256sum | head -c32 | tr 0-9a-f a-p
+	local pem="$1" pub emptysum
+	pub=$(openssl rsa -pubout -outform DER -in "$pem" | dat_to_id)
+	# only print the processed id if openssl did not fail
+	if [[ $emptysum != $pub ]]; then
+		echo "$pub"
 	fi
 }
 get_appid() {
