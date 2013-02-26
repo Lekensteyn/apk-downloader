@@ -10,6 +10,7 @@
  * URL used for requesting a special download token.
  */
 var API_URL = "https://android.clients.google.com/market/api/ApiRequest";
+var FDFE_URL_BASE = "https://android.clients.google.com/fdfe/";
 
 function showLastError() {
     console.log("chrome.extension.lastError", chrome.extension.lastError);
@@ -97,6 +98,17 @@ function _real_processAsset(asset_query_base64, packageName, storeId, tabId) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function() {
         removeAPICookie(storeId, function() {
+            if (xhr.status == 403) {
+                hasValidSession(function(isValid) {
+                    if (isValid) {
+                        alert("Cannot download app, maybe it is a paid one or something?");
+                    } else {
+                        alert("Session expired, please re-login");
+                        openTab("options.html");
+                    }
+                });
+                return;
+            }
             if (xhr.status != 200) {
                 alert("ERROR: Cannot download this app!\n" + xhr.status + " " +
                     xhr.statusText);
@@ -143,6 +155,62 @@ function downloadAPK(marketda, url, filename, storeId, tabId) {
             url: url,
             filename: filename
         });
+    });
+}
+
+/**
+ * Determine whether a valid session is available. If the callback is called
+ * with "false" as first argument, then it is 100% sure that the session is
+ * invalid.
+ */
+function hasValidSession(callback) {
+    var authToken = localStorage.getItem("authToken");
+    if (authToken == null) {
+        callback(false);
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", FDFE_URL_BASE + "delivery");
+    /* GoogleLogin auth=... is required, otherwise you get a 302 which is
+     * uncatchable */
+    xhr.setRequestHeader("Authorization", "GoogleLogin auth=" + authToken);
+    xhr.onload = function () {
+        console.log("xhr status " + xhr.status);
+        if (xhr.status == 401) {
+            /* 401 Unauthorized: invalid login token */
+            localStorage.removeItem("authToken");
+            callback(false);
+        } else {
+            /* assume valid session for other status codes (400, ???) */
+            callback(true);
+        }
+    };
+    xhr.onerror = function () {
+        console.log("Unable to test session for validity, assuming valid one");
+        callback(true);
+    };
+    xhr.send(null);
+}
+/* Try to focus existing options page or open a new tab for it */
+function openTab(url) {
+    chrome.tabs.query({
+        url: url
+    }, function(tabs) {
+        if (tabs.length > 0) {
+            focusTab(tabs[0]);
+        } else {
+            chrome.tabs.create({
+                url: url,
+                active: true
+            }, focusTab);
+        }
+
+        function focusTab(tab) {
+            chrome.windows.update(tab.windowId, {
+                focused: true
+            });
+        }
     });
 }
 

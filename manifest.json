@@ -30,6 +30,7 @@
   ],
   "permissions": [
     "cookies",
+    "tabs",
     "https://www.google.com/accounts/ClientLogin",
     "*://android.clients.google.com/*",
     "*://*.android.clients.google.com/*"

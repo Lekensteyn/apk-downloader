@@ -57,11 +57,12 @@ var MarketSession = {
      * Called when pressing the APK Downloader icon in the location bar.
      */
     download: function(packageName, tabId) {
-        if (!localStorage.getItem("simCountry") || !localStorage.getItem("simOperator") || !localStorage.getItem("simOperatorCode")) {
+        if (!localStorage.getItem("authToken")) {
+            alert("Please login at the Options page");
+            openTab("options.html");
+        } else if (!localStorage.getItem("simCountry") || !localStorage.getItem("simOperator") || !localStorage.getItem("simOperatorCode")) {
             alert("Please set Sim Operator in the Options page first");
-            chrome.tabs.create({
-                url: "options.html"
-            });
+            openTab("options.html");
         } else {
             var options = {};
             options.authToken = localStorage.authToken;
