@@ -126,15 +126,12 @@ var login = function(email, password, deviceId) {
 };
 
 var refreshViews = function() {
+    txtAuthEmail.textContent = inpEmail.value = localStorage.getItem("authEmail");
+    txtDeviceId.textContent = inpDeviceId.value = localStorage.getItem("deviceId");
     if (typeof localStorage.authToken == "undefined") {
-        txtAuthEmail.innerHTML = "";
-        txtDeviceId.innerHTML = "";
         formLogin.style.display = "block";
         formInfo.style.display = "none";
     } else {
-        txtAuthEmail.innerHTML = localStorage.authEmail;
-        txtDeviceId.innerHTML = localStorage.deviceId.toUpperCase();
-
         formInfo.style.display = "block";
         formLogin.style.display = "none";
 
@@ -229,3 +226,12 @@ btnLogout.onclick = function(e) {
 };
 
 refreshViews();
+
+/* test if still logged in */
+if (localStorage.getItem("authToken") != null) {
+    chrome.extension.getBackgroundPage().hasValidSession(function(isValid) {
+        if (!isValid) {
+            refreshViews();
+        }
+    });
+}

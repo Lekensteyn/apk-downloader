@@ -132,7 +132,7 @@ a
 {
 	width: 45%;
 }
-#user_device_id {
+#user_device_id, #device_id {
 	text-transform: uppercase;
 }
 #login_form input.input:invalid {
