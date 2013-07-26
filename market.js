@@ -2,7 +2,7 @@
  * Notify background.js that the APK downloader icon should be shown. The icon
  * should be shown when a free application download is available.
  */
-if (document.querySelector("[data-isfree=true]") != null) {
+if (document.querySelector("meta[content=Free][itemprop=price]") != null) {
     chrome.extension.sendMessage({
         action: "showIcon"
     });
