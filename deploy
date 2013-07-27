@@ -17,6 +17,7 @@ if [ -z "$key" ]; then
 	echo "Key is required"
 	exit 1
 fi
+key="$(readlink -f "$key")"
 
 if ! [ -e "manifest.json" ]; then
 	echo "manifest.json not found in current directory"
@@ -42,9 +43,17 @@ if [[ $emptysum != $_emptysum ]]; then
 	exit 1
 fi
 
+get_pub() {
+	local pem="$1"
+	{
+	openssl rsa -pubout -outform DER -in "$pem" 2>&1 >&3 |
+		grep -xv 'writing RSA key' >&2
+	} 3>&1
+}
+
 calc_id() {
 	local pem="$1" pub emptysum
-	pub=$(openssl rsa -pubout -outform DER -in "$pem" | dat_to_id)
+	pub=$(get_pub "$pem" | dat_to_id)
 	# only print the processed id if openssl did not fail
 	if [[ $emptysum != $pub ]]; then
 		echo "$pub"
