@@ -14,25 +14,23 @@
     "default_icon": "page_action.png",
     "default_title": "APK Downloader"
   },
-  "options_page": "options.html",
-  "background": {
-      "scripts": ["jsxcompressor.min.js", "protocol.js", "background.js" ]
-  },
-  "content_scripts": [
-    {
+  "content_scripts": [{
       "matches": [
-        "*://play.google.com/store/apps/details?id=*",
-        "*://play.google.com/store/apps/details?*&id=*"
+          "*://play.google.com/*"
       ],
       "run_at": "document_end",
       "js": ["market.js"]
-    }
-  ],
+  }],
+
+  "options_page": "options.html",
+  "background": {
+      "scripts": ["jsxcompressor.min.js", "protocol.js", "background.js" ],
+      "persistent": false
+  },
   "permissions": [
     "cookies",
     "tabs",
     "https://www.google.com/accounts/ClientLogin",
-    "*://android.clients.google.com/*",
     "*://*.android.clients.google.com/*"
   ]
 }
