@@ -6,6 +6,10 @@
  * Released under the terms of GPLv3+.
  */
 
+'use strict';
+/* jshint browser:true, devel:true, eqnull:true */
+/* globals chrome, JXG, MarketSession */
+
 /**
  * URL used for requesting a special download token.
  */
@@ -74,7 +78,7 @@ function strToHex(str) {
  */
 function processAsset(asset_query_base64, packageName, tabId) {
     if (typeof tabId !== 'number') {
-        throw Error('processAsset: tabId must be a number');
+        throw new Error('processAsset: tabId must be a number');
     }
     chrome.cookies.getAllCookieStores(function(cookieStores) {
         var i, cookieStore;
@@ -226,6 +230,20 @@ chrome.extension.onMessage.addListener(function (message, sender, sendResponse) 
         }
     }
 });
+var checkMarketPage = function(details) {
+    var tabId = details.tabId;
+    chrome.tabs.sendMessage(tabId, {
+        action: 'checkButtonState'
+    });
+};
+var urlFilter = {
+    url: [{
+        hostEquals: "play.google.com",
+        pathPrefix: "/store/apps/details",
+    }]
+};
+chrome.webNavigation.onHistoryStateUpdated.addListener(checkMarketPage, urlFilter);
+
 
 chrome.pageAction.onClicked.addListener(function (tab) {
     var match = /play\.google\.com\/store\/apps\/details\?(?:|.*&)id=([\w\d\.\_]+)/i.exec(tab.url);

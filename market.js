@@ -42,7 +42,11 @@ observer.observe(document.body, {
 triggerButtonVisibilityCheck();
 
 chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message && message.action == "download") {
+    var action = message && message.action;
+    if (action === 'checkButtonState') {
+        shownButton = undefined;
+        triggerButtonVisibilityCheck();
+    } else if (action === "download") {
         console.log("Requested download of " + message.filename + " from " +
             message.url);
         var a = document.createElement("a");
