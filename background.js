@@ -219,7 +219,11 @@ function openTab(url) {
  */
 chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
     if (message && message.action == "showIcon") {
-        chrome.pageAction.show(sender.tab.id);
+        if (message.show) {
+            chrome.pageAction.show(sender.tab.id);
+        } else {
+            chrome.pageAction.hide(sender.tab.id);
+        }
     }
 });
 
