@@ -25,28 +25,13 @@ Changelog
 For changes before and including 1.3.4, see
 http://forum.xda-developers.com/showthread.php?t=1809458.
 
-Version 1.4.2 - 2013-02-03
-- Fix internal crash when trying to download certain apps.
-
-Version 1.4.1 - 2013-01-13
-- Packaging-only change, add update URL to manifest file and provided
-  ready-to-install CRX file.
-
-Version 1.4 - 2012-12-09
-
-- Rewrite Javascript core of extension, do not make it look too obfuscated.
-- Chromium 23 compatibility. Due to restrictions on changing headers for
-  clients.google.com, a new approach on retrieving the download URL and
-  actually downloading an APK is implemented.
-- Due to the rewrite, you should not need to disable SSL warnings anymore.
-- Add help to options page.
-- Hide SIM operator options by default as you usually do not need those.
+For a detailed changelog from 1.4 and later, see
+https://lekensteyn.nl/apk-downloader/#changelog
 
 Known issues
 ------------
 - No feedback when pressing icon (make it glow?).
-- No useful error when a download failed or auth expired/removed (todo: decode
-  response).
+- No useful error when a download failed (todo: decode response).
 - MarketDA session cookie is not cleared when download is initiated/complete.
 
 Credits
