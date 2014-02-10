@@ -28,7 +28,7 @@ a
 #options h1
 {
 	margin:0px 0px 15px 8px;
-	text-align: center;	
+	text-align: center;
 }
 
 #options form
@@ -90,7 +90,7 @@ a
 	color: #ffffff;
 	padding: 10px 20px;
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#6b6b6b),
 		to(#000000));
 	border-radius: 30px;
@@ -107,7 +107,7 @@ a
 #options form .button-primary:hover
 {
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#ff3333),
 		to(#b80000));
 	border: 1px solid #d11313;
@@ -117,7 +117,7 @@ a
 #options form .button-primary:active
 {
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#bf0000),
 		to(#fa0000));
 	border: 1px solid #d10000;
@@ -179,4 +179,13 @@ a
 }
 input:focus + .help-msg {
 	display: block;
+}
+
+footer {
+	margin: 20px auto;
+	padding-right: 400px;
+	width: 400px;
+}
+footer p {
+	margin-left: 8px;
 }
