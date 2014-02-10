@@ -14,7 +14,11 @@ function triggerButtonVisibilityCheck() {
     var showButton = false;
     if (location.pathname.lastIndexOf('/store/apps/details', 0) === 0) {
         var price = document.querySelector("meta[itemprop=price]");
-        showButton = !price || !/\d/.test(price.getAttribute("content"));
+        showButton = !price;
+        if (price) {
+            price = price.getAttribute("content");
+            showButton = !/\d/.test(price) || price === '0';
+        }
 
         // if the Play Store pages change again...
         if (!showButton && localStorage.getItem('assumeAvailable')) {
