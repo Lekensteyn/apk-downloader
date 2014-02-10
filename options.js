@@ -1,3 +1,7 @@
+/* jshint browser:true, devel:true */
+/* globals chrome, codes */
+'use strict';
+
 var resetSimSettings = function() {
     setSimSettings({
         country: "USA",
@@ -91,8 +95,8 @@ var login = function(email, password, deviceId) {
     xhr.open("POST", URL_LOGIN, true);
 
     var paramsStr = "";
-    for (key in params) {
-        paramsStr += "&" + key + "=" + encodeURIComponent(params[key])
+    for (var key in params) {
+        paramsStr += "&" + key + "=" + encodeURIComponent(params[key]);
     }
 
     xhr.onload = function() {
@@ -155,12 +159,13 @@ var sltOperator = document.getElementById("slt_operator");
 var btnDefault = document.getElementById("btn_default");
 
 var btnsAdv = document.getElementsByClassName("btn-advanced-settings");
+function toggleAdvCb(e) {
+    e.preventDefault();
+    formInfo.classList.toggle("hide-advanced");
+    formInfo.classList.toggle("show-advanced");
+}
 for (var i=0; i<btnsAdv.length; i++) {
-    btnsAdv[i].addEventListener("click", function (e) {
-        e.preventDefault();
-        formInfo.classList.toggle("hide-advanced");
-        formInfo.classList.toggle("show-advanced");
-    });
+    btnsAdv[i].addEventListener("click", toggleAdvCb);
 }
 
 btnDefault.onclick = function(e) {
@@ -200,7 +205,7 @@ btnLogin.onclick = function(e) {
         return;
     }
 
-    if (password.length == 0) {
+    if (password.length === 0) {
         alert('ERROR: Please enter a password!');
         inpPassword.focus();
         return;
@@ -228,7 +233,7 @@ btnLogout.onclick = function(e) {
 refreshViews();
 
 /* test if still logged in */
-if (localStorage.getItem("authToken") != null) {
+if (localStorage.getItem('authToken') !== null) {
     chrome.extension.getBackgroundPage().hasValidSession(function(isValid) {
         if (!isValid) {
             refreshViews();
