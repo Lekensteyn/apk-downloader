@@ -174,6 +174,13 @@ function hasValidSession(callback) {
         return;
     }
 
+    // TODO: restore functionality, currently (2014-02-10), the FDFE URL always
+    // returns 401. For now assume that a token is always valid.
+    if (1) {
+        callback(true);
+        return;
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", FDFE_URL_BASE + "delivery");
     /* GoogleLogin auth=... is required, otherwise you get a 302 which is
