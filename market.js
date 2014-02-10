@@ -15,6 +15,12 @@ function triggerButtonVisibilityCheck() {
     if (location.pathname.lastIndexOf('/store/apps/details', 0) === 0) {
         var price = document.querySelector("meta[itemprop=price]");
         showButton = !price || !/\d/.test(price.getAttribute("content"));
+
+        // if the Play Store pages change again...
+        if (!showButton && localStorage.getItem('assumeAvailable')) {
+            console.log('Overriding detection, assuming app available.');
+            showButton = true;
+        }
     }
     if (showButton !== shownButton) {
         console.log("APK Downloader button will be " +

@@ -168,6 +168,20 @@ for (var i=0; i<btnsAdv.length; i++) {
     btnsAdv[i].addEventListener("click", toggleAdvCb);
 }
 
+// whether to override sanity checks.
+var chkOverride = document.getElementById('skip-dl-checks');
+chkOverride.addEventListener('click', function (ev) {
+    var msg = 'Enabling this option makes paid apps visibile. If you have not' +
+              ' bought the app, then you may be charged for the download.' +
+              ' Do you want to override this safety check?';
+    if (this.checked && !confirm(msg)) {
+        ev.preventDefault();
+        return;
+    }
+    localStorage.setItem('assumeAvailable', this.checked);
+});
+chkOverride.checked = localStorage.getItem('assumeAvailable');
+
 btnDefault.onclick = function(e) {
     e.preventDefault();
     if (confirm('Reset to default sim operator?')) {
