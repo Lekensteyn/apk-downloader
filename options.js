@@ -212,6 +212,12 @@ btnLogin.onclick = function(e) {
     var password = inpPassword.value;
     var deviceId = inpDeviceId.value;
 
+    // append @gmail.com if no host part is available.
+    if (email.length > 0 && !/@/.test(email)) {
+        email += "@gmail.com";
+        inpEmail.value = email;
+    }
+
     var match = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(email);
     if (!match) {
         alert('ERROR: Please enter valid email!');
