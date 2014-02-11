@@ -30,7 +30,6 @@ https://lekensteyn.nl/apk-downloader/#changelog
 
 Known issues
 ------------
-- No feedback when pressing icon (make it glow?).
 - No useful error when a download failed (todo: decode response).
 - MarketDA session cookie is not cleared when download is initiated/complete.
 
