@@ -8,7 +8,7 @@
 
 'use strict';
 /* jshint browser:true, devel:true, eqnull:true */
-/* globals chrome, JXG, MarketSession */
+/* globals chrome, JXG, MarketSession, progress */
 
 /**
  * URL used for requesting a special download token.
@@ -95,6 +95,8 @@ function processAsset(asset_query_base64, packageName, tabId) {
     });
 }
 function _real_processAsset(asset_query_base64, packageName, storeId, tabId) {
+    progress.downloadStarting(tabId);
+
     var payload = "version=2&request=" + asset_query_base64;
     var xhr = new XMLHttpRequest();
     xhr.responseType = "arraybuffer";
@@ -111,13 +113,16 @@ function _real_processAsset(asset_query_base64, packageName, storeId, tabId) {
                         openTab("options.html");
                     }
                 });
+                progress.downloadFailed(tabId);
                 return;
             }
             if (xhr.status != 200) {
                 alert("ERROR: Cannot download this app!\n" + xhr.status + " " +
                     xhr.statusText);
+                progress.downloadFailed(tabId);
                 return;
             }
+
             var chars = new Uint8Array(xhr.response);
             /* gzipped content, try to unpack */
             var data = (new JXG.Util.Unzip(chars)).unzip()[0][0];
@@ -127,17 +132,20 @@ function _real_processAsset(asset_query_base64, packageName, storeId, tabId) {
 
             var url, marketda;
             if ((url = /https?:\/\/[^:]+/i.exec(data))) {
-		/* not sure if decoding is even necessary */
+                /* not sure if decoding is even necessary */
                 url = decodeURIComponent(url[0]);
                 /* format: "MarketDA", 0x72 ('r'), length of data, data */
                 if ((marketda = /MarketDA..(\d+)/.exec(data))) {
                     marketda = marketda[1];
                     var filename = packageName + ".apk";
                     downloadAPK(marketda, url, filename, storeId, tabId);
+                    progress.downloadStarted(tabId);
                     return;
                 }
             }
+
             alert("ERROR: Cannot download this app!");
+            progress.downloadFailed(tabId);
         });
     };
     xhr.onerror = removeAPICookie.bind(null, storeId);
