@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Peter Wu <lekensteyn@gmail.com>
+# Author: Peter Wu <peter@lekensteyn.nl>
 
 wwwdir="$1"
 key="$2"

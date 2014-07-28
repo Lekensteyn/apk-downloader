@@ -5,7 +5,7 @@
  * Authors:
  *      redphoenix89 <http://codekiem.com/>
  *      Stephan Schmitz <eyecatchup@gmail.com>
- *      Peter Wu <lekensteyn@gmail.com>
+ *      Peter Wu <peter@lekensteyn.nl>
  */
 
 /**

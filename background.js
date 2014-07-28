@@ -1,7 +1,7 @@
 /**
  * Authors:
- *      Rob Wu <gwnRob@gmail.com>
- *      Peter Wu <lekensteyn@gmail.com>
+ *      Rob Wu <rob@robwu.nl>
+ *      Peter Wu <peter@lekensteyn.nl>
  *
  * Released under the terms of GPLv3+.
  */

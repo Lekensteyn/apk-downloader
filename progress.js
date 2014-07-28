@@ -1,7 +1,7 @@
 /**
  * Provides a fancy animation to the download icon.
  *
- * Copyright (C) 2014 Peter Wu <lekensteyn@gmail.com>
+ * Copyright (C) 2014 Peter Wu <peter@lekensteyn.nl>
  */
 
 'use strict';
