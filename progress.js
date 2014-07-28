@@ -7,6 +7,7 @@
 'use strict';
 /* jshint browser:true, devel:true */
 /* globals chrome */
+/* exported progress */
 var progress = (function () {
     // number of slices in a round
     var ROTATIONS = 8;

@@ -9,6 +9,7 @@
 'use strict';
 /* jshint browser:true, devel:true, eqnull:true */
 /* globals chrome, JXG, MarketSession, progress */
+/* exported processAsset */
 
 /**
  * URL used for requesting a special download token.

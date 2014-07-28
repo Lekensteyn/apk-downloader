@@ -1,3 +1,5 @@
+'use strict';
+/* exported codes */
 var codes = {
     "Albania": {
         "AMC": "27601",
