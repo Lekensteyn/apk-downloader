@@ -162,6 +162,13 @@ function downloadAPK(marketda, url, filename, storeId, tabId) {
 
     setMDACookie(storeId, marketda, function() {
         console.log("Trying to download " + url + " and save it as " + filename);
+        if (chrome.downloads) {
+            chrome.downloads.download({
+                url: url,
+                filename: filename
+            });
+            return;
+        }
         chrome.tabs.sendMessage(tabId, {
             action: "download",
             url: url,
