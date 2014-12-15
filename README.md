@@ -1,62 +1,89 @@
 APK Downloader Chrome Extension
 ===============================
-This original version of this Chromium extension can be found on
-http://codekiem.com/2012/02/24/apk-downloader/. Improvements have been made by
-Bexton.
 
-This version is based on apkdownloader-1.3.4.zip as found on
-http://forum.xda-developers.com/showthread.php?t=1809458. This project was
-started because the 1.3.4 version became broken with Chromium 23 and because I
-(Lekensteyn) prefer a public git repository to work on code instead of some
-obscure zip package from a random forum.
+_As featured on Android Police, AndroidPit, XDA & more._
 
-Contributions are always welcome.
+**_APK Downloader_** is a simple Chrome extension that allows one to pull any 
+free apk (no pirating, folks!) from Google's Play Store website - even if it's 
+listed as incompatible with your device and / or country.  
+
+About
+-----
+
+The _original_ version of this extension was developed by [redphoenix89] and can 
+be found on <http://codekiem.com/2012/02/24/apk-downloader/>.
+
+_This_ version, however, is based on [version 1.3.4]. That version was developed 
+by [eyecatchUp] (a.k.a. Bexton) and is an updated and heavily improved version 
+of redphoenix89's original **_APK Downloader_** version. It can be found on [XDA]. 
+
+I - [Lekensteyn] - started this repository because changes in Chromium 23 broke 
+the **_APK Downloader_** version 1.3.4 and it received no more updates. _(And 
+also because I prefer a public git repository and wasn't aware of [eyecatchUp's 
+repository] at this time.)_ Since then, I fixed the extension's outdated code, 
+further improved it and kept it uptodate, until today.
+
+Contributions are always welcome, of course.
+
 
 Installation
 ------------
-Prior to version 1.4.1, only a source distribution was available, but since I
-found out that some third parties provide a CRX file with spyware, I decided to
-make a CRX available as well. For installation instructions, see:
 
-  https://lekensteyn.nl/apk-downloader/
+To install the latest version, please refer to the instructions here:  
+_**Note:** Use of the extension is against the Play Store ToS - use at your own 
+"risk"._ 
 
-Changelog
----------
-For changes before and including 1.3.4, see
-http://forum.xda-developers.com/showthread.php?t=1809458.
+  - <https://lekensteyn.nl/apk-downloader/>
 
-For a detailed changelog from 1.4 and later, see
-https://lekensteyn.nl/apk-downloader/#changelog
 
-Known issues
+Changelogs
+----------
+
+  - **Version >= 1.4.0**  
+    <https://lekensteyn.nl/apk-downloader/#changelog>
+  - **Version >= 1.3.0 and <= 1.3.4**  
+    <http://forum.xda-developers.com/showpost.php?p=29644434&postcount=1>
+  - **Version <= 1.2.1**  
+    <http://codekiem.com/2012/02/24/apk-downloader/>
+
+
+Known Issues
 ------------
-- No useful error when a download failed (todo: decode response).
-- MarketDA session cookie is not cleared when download is initiated/complete.
 
-Credits
--------
-Many thanks to [redphoenix89](http://codekiem.com/) for the original version and
-[Bexton](http://forum.xda-developers.com/member.php?u=4273402) for the improved
-version.
+  - No useful client feedback when a download failed (todo: decode response).
+  - MarketDA session cookie is not cleared when download is initiated/complete.
 
-[Lekensteyn](http://lekensteyn.nl/) started cleaning the extension, fixing
-header-related bugs and tried to make the options page more obvious. [Rob
-W](http://rob.lekensteyn.nl/) rewrote the download code.
 
-Other projects
---------------
+Authors / Credits
+-----------------
+
+  - **Quan Le Thanh Minh** (a.k.a. [redphoenix89])  
+    _Author of the original version._
+  - **Stephan Schmitz** (a.k.a. [eyecatchUp] / [Bexton])  
+    _Improved / rewrote redphoenix89's version and created the [new icon] artwork._
+  - **Peter Wu** (a.k.a. [Lekensteyn])  
+    _Improved / rewrote eyecatchUp's version._  
+  - **[Rob Wu]**  
+    _Contributor to Lekensteyn's version._ 
+
+
+Similar Projects
+----------------
+
 While trying to find out how things work, I encountered some other projects:
-Python download script: https://github.com/evilsocket/google-play-downloader
+Python download script: <https://github.com/evilsocket/google-play-downloader>
 (uses the same idea as redphoenix89's Chrome extension, but implemented in
-Python)
+Python).
 
 PHP script for downloading (I could not test the actual APK download process as
 tcpdump did not show the necessary UserID):
-http://thomascannon.net/blog/2011/06/downloading-apks-from-android-market/
+<http://thomascannon.net/blog/2011/06/downloading-apks-from-android-market/>.
+
 
 License
 -------
-The original version (1.3.4) did not have a software license. The newly written
+
+Version 1.3.4 did not specified a software license. The newly written
 code is licensed under GPLv3:
 
     This program is free software: you can redistribute it and/or modify
@@ -71,3 +98,14 @@ code is licensed under GPLv3:
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+[redphoenix89]:http://codekiem.com/  
+[Lekensteyn]:http://lekensteyn.nl/
+[eyecatchUp]:http://eyecatchup.github.io/
+[Bexton]:http://forum.xda-developers.com/member.php?u=4273402
+[Rob Wu]:http://robwu.nl/
+[XDA]:http://forum.xda-developers.com/showthread.php?t=1809458
+[version 1.3.4]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
+[eyecatchUp's repository]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
+[new icon]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/commit/c3985ac757dcb6c10bf053590401f824490e96a5
