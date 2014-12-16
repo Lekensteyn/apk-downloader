@@ -1,62 +1,82 @@
 APK Downloader Chrome Extension
 ===============================
-This original version of this Chromium extension can be found on
-http://codekiem.com/2012/02/24/apk-downloader/. Improvements have been made by
-Bexton.
 
-This version is based on apkdownloader-1.3.4.zip as found on
-http://forum.xda-developers.com/showthread.php?t=1809458. This project was
-started because the 1.3.4 version became broken with Chromium 23 and because I
-(Lekensteyn) prefer a public git repository to work on code instead of some
-obscure zip package from a random forum.
+**_APK Downloader_** is a simple extension for Google Chrome / Chromium, that allows one to pull any free apk (no pirating, folks!) from Google's Play Store website - even if it's listed as incompatible with your device and / or country.
 
-Contributions are always welcome.
+---
 
-Installation
+Installing
+----------
+
+To install the latest version, please refer to the instructions here:  
+
+  - <https://lekensteyn.nl/apk-downloader/>
+
+---
+
+Known Issues
 ------------
-Prior to version 1.4.1, only a source distribution was available, but since I
-found out that some third parties provide a CRX file with spyware, I decided to
-make a CRX available as well. For installation instructions, see:
 
-  https://lekensteyn.nl/apk-downloader/
+  - No useful client feedback when a download failed (todo: decode response).
+  - MarketDA session cookie is not cleared when download is initiated/complete.
 
-Changelog
----------
-For changes before and including 1.3.4, see
-http://forum.xda-developers.com/showthread.php?t=1809458.
 
-For a detailed changelog from 1.4 and later, see
-https://lekensteyn.nl/apk-downloader/#changelog
+Contributions are always welcome, of course.
 
-Known issues
-------------
-- No useful error when a download failed (todo: decode response).
-- MarketDA session cookie is not cleared when download is initiated/complete.
+---
 
-Credits
--------
-Many thanks to [redphoenix89](http://codekiem.com/) for the original version and
-[Bexton](http://forum.xda-developers.com/member.php?u=4273402) for the improved
-version.
+Changelogs
+----------
 
-[Lekensteyn](http://lekensteyn.nl/) started cleaning the extension, fixing
-header-related bugs and tried to make the options page more obvious. [Rob
-W](http://rob.lekensteyn.nl/) rewrote the download code.
+  - ###### Version >= 1.4.0  
+    <https://lekensteyn.nl/apk-downloader/#changelog>
 
-Other projects
---------------
+  - ###### Version > 1.2.1 and < 1.4.0
+    <http://forum.xda-developers.com/showthread.php?p=29644434#post29644434>
+
+  - ###### Version <= 1.2.1
+    <http://codekiem.com/2012/02/24/apk-downloader/>
+    
+---
+
+Authors / Credits
+-----------------
+
+  - ###### Version >= 1.4.0 
+
+    - **Peter Wu** (a.k.a. [Lekensteyn])  
+    _Author, Lead-Developer_  
+    - **[Rob Wu]**  
+    _Collaborateur, Developer_   
+
+  
+  - ###### Version > 1.2.1 and < 1.4.0
+
+    - **Stephan Schmitz** (a.k.a. [eyecatchUp], a.k.a. [Bexton])  
+      _Author, Lead-Developer, Created the APK Downloader icon art_   
+
+
+  - ###### Version <= 1.2.1
+
+    - **Quan Le Thanh Minh** (a.k.a. [redphoenix89])  
+      _Ceator, Author, Lead-Developer_
+
+---
+
+Similar Projects
+----------------
+
 While trying to find out how things work, I encountered some other projects:
-Python download script: https://github.com/evilsocket/google-play-downloader
+Python download script: <https://github.com/evilsocket/google-play-downloader>
 (uses the same idea as redphoenix89's Chrome extension, but implemented in
-Python)
+Python).
 
-PHP script for downloading (I could not test the actual APK download process as
-tcpdump did not show the necessary UserID):
-http://thomascannon.net/blog/2011/06/downloading-apks-from-android-market/
+---
 
 License
 -------
-The original version (1.3.4) did not have a software license. The newly written
+
+Version 1.3.4 did not specified a software license. The newly written
 code is licensed under GPLv3:
 
     This program is free software: you can redistribute it and/or modify
@@ -71,3 +91,10 @@ code is licensed under GPLv3:
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+[redphoenix89]:http://codekiem.com/  
+[eyecatchUp]:http://eyecatchup.github.io/  
+[Bexton]:http://forum.xda-developers.com/member.php?u=4273402  
+[Lekensteyn]:http://lekensteyn.nl/  
+[Rob Wu]:https://robwu.nl/  
