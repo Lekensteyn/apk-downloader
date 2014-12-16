@@ -97,4 +97,4 @@ code is licensed under GPLv3:
 [eyecatchUp]:http://eyecatchup.github.io/  
 [Bexton]:http://forum.xda-developers.com/member.php?u=4273402  
 [Lekensteyn]:http://lekensteyn.nl/  
-[Rob Wu]:http://robwu.nl/  
+[Rob Wu]:https://robwu.nl/  
