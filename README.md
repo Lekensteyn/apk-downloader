@@ -83,5 +83,5 @@ code is licensed under GPLv3:
 [Wrote the initial version]:https://web.archive.org/web/20120813111556/http://codekiem.com//2012/02/24/apk-downloader/  
 [Improved / rewrote redphoenix89's version]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/compare/releases/v1.2.1...releases/v1.3.4  
 [new icon]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/commit/c3985ac757dcb6c10bf053590401f824490e96a5  
-[Improved / rewrote eyecatchUp's version]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/compare/releases/v1.2.1...releases/v1.3.4  
+[Improved / rewrote eyecatchUp's version]:https://github.com/Lekensteyn/apk-downloader/compare/9fde08136645063eb66c79ef990a11c33e40e56a...master  
 [Contributed to Lekensteyn's version]:https://github.com/Lekensteyn/apk-downloader/commits?author=Rob--W  
