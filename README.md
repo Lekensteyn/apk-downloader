@@ -3,38 +3,16 @@ APK Downloader Chrome Extension
 
 **_APK Downloader_** is a simple extension for Google Chrome / Chromium, that allows one to pull any free apk (no pirating, folks!) from Google's Play Store website - even if it's listed as incompatible with your device and / or country.
 
+---
 
-Installation
-------------
+Installing
+----------
 
 To install the latest version, please refer to the instructions here:  
 
   - <https://lekensteyn.nl/apk-downloader/>
 
-
-Changelogs
-----------
-
-  - **Version >= 1.4.0**  
-    <https://lekensteyn.nl/apk-downloader/#changelog>
-  - **Version >= 1.3.0 and <= 1.3.4**  
-    <http://forum.xda-developers.com/showpost.php?p=29644434&postcount=1>
-  - **Version <= 1.2.1**  
-    <http://codekiem.com/2012/02/24/apk-downloader/>
-
-
-Authors / Credits
------------------
-
-  - **Quan Le Thanh Minh** (a.k.a. [redphoenix89])  
-    _[Wrote the initial version]._
-  - **Stephan Schmitz** (a.k.a. [eyecatchUp] / [Bexton])  
-    _[Improved / rewrote redphoenix89's version] and created the [new icon] artwork._
-  - **Peter Wu** (a.k.a. [Lekensteyn])  
-    _[Improved / rewrote eyecatchUp's version]._  
-  - **[Rob Wu]**  
-    _[Contributed to Lekensteyn's version]._ 
-
+---
 
 Known Issues
 ------------
@@ -45,6 +23,45 @@ Known Issues
 
 Contributions are always welcome, of course.
 
+---
+
+Changelogs
+----------
+
+  - ###### Version >= 1.4.0  
+    <https://lekensteyn.nl/apk-downloader/#changelog>
+
+  - ###### Version > 1.2.1 and < 1.4.0
+    <http://forum.xda-developers.com/showthread.php?p=29644434#post29644434>
+
+  - ###### Version <= 1.2.1
+    <http://codekiem.com/2012/02/24/apk-downloader/>
+    
+---
+
+Authors / Credits
+-----------------
+
+  - ###### Version >= 1.4.0 
+
+    - **Peter Wu** (a.k.a. [Lekensteyn])  
+    _Author, Lead-Developer_  
+    - **[Rob Wu]**  
+    _Collaborateur, Developer_   
+
+  
+  - ###### Version > 1.2.1 and < 1.4.0
+
+    - **Stephan Schmitz** (a.k.a. [eyecatchUp], a.k.a. [Bexton])  
+      _Author, Lead-Developer, Created the APK Downloader icon art_   
+
+
+  - ###### Version <= 1.2.1
+
+    - **Quan Le Thanh Minh** (a.k.a. [redphoenix89])  
+      _Ceator, Author, Lead-Developer_
+
+---
 
 Similar Projects
 ----------------
@@ -54,6 +71,7 @@ Python download script: <https://github.com/evilsocket/google-play-downloader>
 (uses the same idea as redphoenix89's Chrome extension, but implemented in
 Python).
 
+---
 
 License
 -------
@@ -80,8 +98,3 @@ code is licensed under GPLv3:
 [Bexton]:http://forum.xda-developers.com/member.php?u=4273402  
 [Lekensteyn]:http://lekensteyn.nl/  
 [Rob Wu]:http://robwu.nl/  
-[Wrote the initial version]:https://web.archive.org/web/20120813111556/http://codekiem.com//2012/02/24/apk-downloader/  
-[Improved / rewrote redphoenix89's version]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/compare/releases/v1.2.1...releases/v1.3.4  
-[new icon]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/commit/c3985ac757dcb6c10bf053590401f824490e96a5  
-[Improved / rewrote eyecatchUp's version]:https://github.com/Lekensteyn/apk-downloader/compare/9fde08136645063eb66c79ef990a11c33e40e56a...master  
-[Contributed to Lekensteyn's version]:https://github.com/Lekensteyn/apk-downloader/commits?author=Rob--W  
