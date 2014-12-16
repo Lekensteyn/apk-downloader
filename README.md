@@ -27,13 +27,13 @@ Authors / Credits
 -----------------
 
   - **Quan Le Thanh Minh** (a.k.a. [redphoenix89])  
-    _Author of the original version._
+    _[Wrote the initial version]._
   - **Stephan Schmitz** (a.k.a. [eyecatchUp] / [Bexton])  
-    _Improved / rewrote redphoenix89's version and created the [new icon] artwork._
+    _[Improved / rewrote redphoenix89's version] and created the [new icon] artwork._
   - **Peter Wu** (a.k.a. [Lekensteyn])  
-    _Improved / rewrote eyecatchUp's version._  
+    _[Improved / rewrote eyecatchUp's version]._  
   - **[Rob Wu]**  
-    _Contributor to Lekensteyn's version._ 
+    _[Contributed to Lekensteyn's version]._ 
 
 
 Known Issues
@@ -76,11 +76,12 @@ code is licensed under GPLv3:
 
 
 [redphoenix89]:http://codekiem.com/  
-[Lekensteyn]:http://lekensteyn.nl/
-[eyecatchUp]:http://eyecatchup.github.io/
-[Bexton]:http://forum.xda-developers.com/member.php?u=4273402
-[Rob Wu]:http://robwu.nl/
-[XDA]:http://forum.xda-developers.com/showthread.php?t=1809458
-[GitHub]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
-[eyecatchUp's repository]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
-[new icon]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/commit/c3985ac757dcb6c10bf053590401f824490e96a5
+[eyecatchUp]:http://eyecatchup.github.io/  
+[Bexton]:http://forum.xda-developers.com/member.php?u=4273402  
+[Lekensteyn]:http://lekensteyn.nl/  
+[Rob Wu]:http://robwu.nl/  
+[Wrote the initial version]:https://web.archive.org/web/20120813111556/http://codekiem.com//2012/02/24/apk-downloader/  
+[Improved / rewrote redphoenix89's version]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/compare/releases/v1.2.1...releases/v1.3.4  
+[new icon]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/commit/c3985ac757dcb6c10bf053590401f824490e96a5  
+[Improved / rewrote eyecatchUp's version]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/compare/releases/v1.2.1...releases/v1.3.4  
+[Contributed to Lekensteyn's version]:https://github.com/Lekensteyn/apk-downloader/commits?author=Rob--W  
