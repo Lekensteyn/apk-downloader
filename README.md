@@ -1,37 +1,13 @@
 APK Downloader Chrome Extension
 ===============================
 
-_As featured on Android Police, AndroidPit, XDA & more._
-
-**_APK Downloader_** is a simple Chrome extension that allows one to pull any 
-free apk (no pirating, folks!) from Google's Play Store website - even if it's 
-listed as incompatible with your device and / or country.  
-
-About
------
-
-The _original_ version of this extension was developed by [redphoenix89] and can 
-be found on <http://codekiem.com/2012/02/24/apk-downloader/>.
-
-_This_ version, however, is based on [version 1.3.4]. That version was developed 
-by [eyecatchUp] (a.k.a. Bexton) and is an updated and heavily improved version 
-of redphoenix89's original **_APK Downloader_** version. It can be found on [XDA]. 
-
-I - [Lekensteyn] - started this repository because changes in Chromium 23 broke 
-the **_APK Downloader_** version 1.3.4 and it received no more updates. _(And 
-also because I prefer a public git repository and wasn't aware of [eyecatchUp's 
-repository] at this time.)_ Since then, I fixed the extension's outdated code, 
-further improved it and kept it uptodate, until today.
-
-Contributions are always welcome, of course.
+**_APK Downloader_** is a simple extension for Google Chrome / Chromium, that allows one to pull any free apk (no pirating, folks!) from Google's Play Store website - even if it's listed as incompatible with your device and / or country.
 
 
 Installation
 ------------
 
 To install the latest version, please refer to the instructions here:  
-_**Note:** Use of the extension is against the Play Store ToS - use at your own 
-"risk"._ 
 
   - <https://lekensteyn.nl/apk-downloader/>
 
@@ -47,13 +23,6 @@ Changelogs
     <http://codekiem.com/2012/02/24/apk-downloader/>
 
 
-Known Issues
-------------
-
-  - No useful client feedback when a download failed (todo: decode response).
-  - MarketDA session cookie is not cleared when download is initiated/complete.
-
-
 Authors / Credits
 -----------------
 
@@ -67,6 +36,16 @@ Authors / Credits
     _Contributor to Lekensteyn's version._ 
 
 
+Known Issues
+------------
+
+  - No useful client feedback when a download failed (todo: decode response).
+  - MarketDA session cookie is not cleared when download is initiated/complete.
+
+
+Contributions are always welcome, of course.
+
+
 Similar Projects
 ----------------
 
@@ -74,10 +53,6 @@ While trying to find out how things work, I encountered some other projects:
 Python download script: <https://github.com/evilsocket/google-play-downloader>
 (uses the same idea as redphoenix89's Chrome extension, but implemented in
 Python).
-
-PHP script for downloading (I could not test the actual APK download process as
-tcpdump did not show the necessary UserID):
-<http://thomascannon.net/blog/2011/06/downloading-apks-from-android-market/>.
 
 
 License
@@ -106,6 +81,6 @@ code is licensed under GPLv3:
 [Bexton]:http://forum.xda-developers.com/member.php?u=4273402
 [Rob Wu]:http://robwu.nl/
 [XDA]:http://forum.xda-developers.com/showthread.php?t=1809458
-[version 1.3.4]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
+[GitHub]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
 [eyecatchUp's repository]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx  
 [new icon]:https://github.com/eyecatchup/android-play-store-apk-downloader-crx/commit/c3985ac757dcb6c10bf053590401f824490e96a5
