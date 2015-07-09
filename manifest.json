@@ -4,7 +4,6 @@
   "version": "2.1",
   "manifest_version": 2,
   "homepage_url": "https://lekensteyn.nl/apk-downloader/",
-  "update_url": "https://lekensteyn.nl/apk-downloader/updates.xml",
   "icons": {
       "16": "icon_16.png",
       "48": "icon_48.png",
@@ -24,10 +23,12 @@
 
   "options_page": "options.html",
   "background": {
+      "page": "background.html",
       "scripts": ["jsxcompressor.min.js", "protocol.js", "progress.js", "background.js" ],
       "persistent": false
   },
   "permissions": [
+    "identity",
     "cookies",
     "downloads",
     "webNavigation",
