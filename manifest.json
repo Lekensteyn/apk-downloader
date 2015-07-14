@@ -29,7 +29,7 @@
       "persistent": false
   },
   "permissions": [
-    "identity"
+    "identity",
     "cookies",
     "downloads",
     "webNavigation",
