@@ -208,36 +208,42 @@ var btnLogin = document.getElementById("btn_login");
 btnLogin.onclick = function(e) {
     e.preventDefault();
 
-    var email = inpEmail.value;
-    var password = inpPassword.value;
-    var deviceId = inpDeviceId.value;
+    chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+        // Use the token.
+        alert("The token="+token);
+    });
 
-    // append @gmail.com if no host part is available.
-    if (email.length > 0 && !/@/.test(email)) {
-        email += "@gmail.com";
-        inpEmail.value = email;
-    }
 
-    var match = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(email);
-    if (!match) {
-        alert('ERROR: Please enter valid email!');
-        inpEmail.focus();
-        return;
-    }
+    // var email = inpEmail.value;
+    // var password = inpPassword.value;
+    // var deviceId = inpDeviceId.value;
 
-    if (password.length === 0) {
-        alert('ERROR: Please enter a password!');
-        inpPassword.focus();
-        return;
-    }
+    // // append @gmail.com if no host part is available.
+    // if (email.length > 0 && !/@/.test(email)) {
+    //     email += "@gmail.com";
+    //     inpEmail.value = email;
+    // }
 
-    if (!/^[0-9a-f]{16}$/i.test(deviceId)) {
-        alert('ERROR: Android Device ID must be 16 characters long and only contains characters from 0-9, A-F');
-        inpDeviceId.focus();
-        return;
-    }
+    // var match = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(email);
+    // if (!match) {
+    //     alert('ERROR: Please enter valid email!');
+    //     inpEmail.focus();
+    //     return;
+    // }
 
-    login(email, password, deviceId);
+    // if (password.length === 0) {
+    //     alert('ERROR: Please enter a password!');
+    //     inpPassword.focus();
+    //     return;
+    // }
+
+    // if (!/^[0-9a-f]{16}$/i.test(deviceId)) {
+    //     alert('ERROR: Android Device ID must be 16 characters long and only contains characters from 0-9, A-F');
+    //     inpDeviceId.focus();
+    //     return;
+    // }
+
+    // login(email, password, deviceId);
 };
 
 var btnLogout = document.getElementById("btn_logout");
