@@ -208,28 +208,22 @@ var btnLogin = document.getElementById("btn_login");
 btnLogin.onclick = function(e) {
     e.preventDefault();
 
-    chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
-        // Use the token.
-        alert("The token="+token);
-    });
-
-
-    // var email = inpEmail.value;
+    var email = inpEmail.value;
     // var password = inpPassword.value;
-    // var deviceId = inpDeviceId.value;
+    var deviceId = inpDeviceId.value;
 
-    // // append @gmail.com if no host part is available.
-    // if (email.length > 0 && !/@/.test(email)) {
-    //     email += "@gmail.com";
-    //     inpEmail.value = email;
-    // }
+    // append @gmail.com if no host part is available.
+    if (email.length > 0 && !/@/.test(email)) {
+        email += "@gmail.com";
+        inpEmail.value = email;
+    }
 
-    // var match = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(email);
-    // if (!match) {
-    //     alert('ERROR: Please enter valid email!');
-    //     inpEmail.focus();
-    //     return;
-    // }
+    var match = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.exec(email);
+    if (!match) {
+        alert('ERROR: Please enter valid email!');
+        inpEmail.focus();
+        return;
+    }
 
     // if (password.length === 0) {
     //     alert('ERROR: Please enter a password!');
@@ -237,13 +231,21 @@ btnLogin.onclick = function(e) {
     //     return;
     // }
 
-    // if (!/^[0-9a-f]{16}$/i.test(deviceId)) {
-    //     alert('ERROR: Android Device ID must be 16 characters long and only contains characters from 0-9, A-F');
-    //     inpDeviceId.focus();
-    //     return;
-    // }
+    if (!/^[0-9a-f]{16}$/i.test(deviceId)) {
+        alert('ERROR: Android Device ID must be 16 characters long and only contains characters from 0-9, A-F');
+        inpDeviceId.focus();
+        return;
+    }
 
     // login(email, password, deviceId);
+    
+    chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+        // Use the token.
+        alert("The token="+token);
+        saveAuth(email, token, deviceId);
+        
+        refreshViews();
+    });
 };
 
 var btnLogout = document.getElementById("btn_logout");
