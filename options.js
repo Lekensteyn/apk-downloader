@@ -209,7 +209,7 @@ btnLogin.onclick = function(e) {
     e.preventDefault();
 
     var email = inpEmail.value;
-    var password = inpPassword.value;
+    // var password = inpPassword.value;
     var deviceId = inpDeviceId.value;
 
     // append @gmail.com if no host part is available.
@@ -225,11 +225,11 @@ btnLogin.onclick = function(e) {
         return;
     }
 
-    if (password.length === 0) {
-        alert('ERROR: Please enter a password!');
-        inpPassword.focus();
-        return;
-    }
+    // if (password.length === 0) {
+    //     alert('ERROR: Please enter a password!');
+    //     inpPassword.focus();
+    //     return;
+    // }
 
     if (!/^[0-9a-f]{16}$/i.test(deviceId)) {
         alert('ERROR: Android Device ID must be 16 characters long and only contains characters from 0-9, A-F');
@@ -237,7 +237,15 @@ btnLogin.onclick = function(e) {
         return;
     }
 
-    login(email, password, deviceId);
+    // login(email, password, deviceId);
+    
+    chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+        // Use the token.
+        alert("The token="+token);
+        saveAuth(email, token, deviceId);
+        
+        refreshViews();
+    });
 };
 
 var btnLogout = document.getElementById("btn_logout");

@@ -1,2 +1,5 @@
 .*.sw*
 *.crx
+
+//to ignore zipped extension
+*.zip
