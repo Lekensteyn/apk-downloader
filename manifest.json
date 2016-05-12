@@ -24,7 +24,7 @@
 
   "options_page": "options.html",
   "background": {
-      "scripts": ["jsxcompressor.min.js", "protocol.js", "progress.js", "background.js" ],
+      "scripts": ["jsxcompressor.js", "protocol.js", "progress.js", "background.js" ],
       "persistent": false
   },
   "permissions": [
