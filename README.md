@@ -46,13 +46,20 @@ W](http://rob.lekensteyn.nl/) rewrote the download code.
 Other projects
 --------------
 While trying to find out how things work, I encountered some other projects:
-Python download script: https://github.com/evilsocket/google-play-downloader
-(uses the same idea as redphoenix89's Chrome extension, but implemented in
-Python)
 
-PHP script for downloading (I could not test the actual APK download process as
-tcpdump did not show the necessary UserID):
-http://thomascannon.net/blog/2011/06/downloading-apks-from-android-market/
+1. Python download script
+  [bluemutedwisdom/google-play-downloader][1-python]  
+  Uses the same idea as redphoenix89's Chrome extension, but implemented in
+  Python
+2. PHP script for downloading
+  [Downloading APKs from Android Market][2-php]  
+  I could not test the actual APK download process as tcpdump did not show
+  the necessary UserID.  
+  The original author notes this method is now no longer working:  
+    > Note:
+    > This is a very old post and will no longer work because the Google 
+    > Play API has changed significantly. This post has been left here for 
+    > historical reference.
 
 License
 -------
@@ -71,3 +78,7 @@ code is licensed under GPLv3:
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+<!-- URL refs, to keep the main Markdown within the 80-character limit -->
+[1-python]: https://github.com/bluemutedwisdom/google-play-downloader/
+[2-php]: https://web.archive.org/web/20190908072151/http://thomascannon.net:80/blog/2011/06/downloading-apks-from-android-market/
